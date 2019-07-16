@@ -1,5 +1,5 @@
 <?php
-include 'connect_to_database.php';
+include 'db_connect.php';
 
 if(empty($_SESSION)) // if the session not yet started 
    session_start();
