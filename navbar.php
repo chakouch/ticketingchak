@@ -1,11 +1,11 @@
 <?php
-include 'db_connect.php';
+include 'db_connect.php'; // Connexion à la base de données
 
-if(empty($_SESSION)) // if the session not yet started 
+if(empty($_SESSION)) // Si la session n'est pas démarrée
    session_start();
 
-if(!isset($_SESSION['userid'])) { //if not yet logged in
-   header("Location: index.php");// send to login page
+if(!isset($_SESSION['userid'])) { //Si le login n'est pas encore fait
+   header("Location: index.php");// envoi vers la page de login
    exit;
 }
 
@@ -32,7 +32,6 @@ if(!isset($_SESSION['userid'])) { //if not yet logged in
 
     <nav class="navbar navbar-default">
 	  <div class="container-fluid">
-		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
 		  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 			<span class="sr-only">Toggle navigation</span>
@@ -43,16 +42,12 @@ if(!isset($_SESSION['userid'])) { //if not yet logged in
 		  <a class="navbar-brand" href="manage_ticket.php">Ticketing</a>
 		</div>
 
-		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		  <ul class="nav navbar-nav">
-			<!--li class="active"><a href="">Home<span class="sr-only"></span></a></li-->
 			<li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Tickets <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="create_ticket.php">Créer un ticket</a></li>
-                  <!--li role="separator" class="divider"></li>
-                  <!--li class="dropdown-header">Nav header</li-->
                   <li><a href="manage_ticket.php">Tickets en cours</a></li>
 				  <li><a href="ticket_clo.php">Tickets cloturés</a></li>
                 </ul>
@@ -61,8 +56,6 @@ if(!isset($_SESSION['userid'])) { //if not yet logged in
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Projets<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="create_projet.php">Créer un projet</a></li>
-                  <!--li role="separator" class="divider"></li>
-                  <!--li class="dropdown-header">Nav header</li-->
                   <li><a href="manage_projet.php">Liste des projets</a></li>
                 </ul>
             </li>
@@ -70,8 +63,6 @@ if(!isset($_SESSION['userid'])) { //if not yet logged in
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Clients<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="create_client.php">Créer un client</a></li>
-                  <!--li role="separator" class="divider"></li>
-                  <!--li class="dropdown-header">Nav header</li-->
                   <li><a href="manage_client.php">Liste des clients</a></li>
                 </ul>
             </li>
@@ -87,8 +78,8 @@ if(!isset($_SESSION['userid'])) { //if not yet logged in
                 </ul>
             </li>
 		  </ul>
-		</div><!-- /.navbar-collapse -->
-	  </div><!-- /.container-fluid -->
+		</div>
+	  </div>
 	</nav>
   </body>
 </html>

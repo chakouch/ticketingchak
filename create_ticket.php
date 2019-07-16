@@ -1,5 +1,4 @@
 <?php
-include 'connect_to_database.php'; //connect the connection page
 include 'navbar.php';
 
 $action = (isset($_POST["act"])) ? $_POST["act"] : "";
