@@ -1,7 +1,8 @@
 <?php
 
 include 'navbar.php';
-$dbc = new PDO("mysql:host=localhost;dbname=ticketing" , "root", "");
+include 'db_connect.php';
+
 $action = (isset($_POST["act"])) ? $_POST["act"] : ""; 
 $id = (isset($_POST["id"])) ? $_POST["id"] : ""; 
 
@@ -47,14 +48,14 @@ if ($action == "N"){
                 ";
     }
     
-    $dbc->query($cmd);
+    $dbs->query($cmd);
     
 }
 
 if ($action == "M"){
 
     $cmd = "select * from user where usr_id = '$id' ;";
-    $res = $dbc->query($cmd);
+    $res = $dbs->query($cmd);
     $line = $res->fetch();
 
     $usr_id_upd       = $line["usr_id"];
@@ -72,14 +73,11 @@ if ($action == "M"){
 
 if ($action == "S"){
     $cmd = "update user set usr_del=1 where usr_id='$id' ; ";
-    $dbc->query($cmd);
+    $dbs->query($cmd);
 }
 
-
-
-$dbc = new PDO("mysql:host=localhost;dbname=ticketing" , "root", "");
 $cmd= "select * from user";
-$res = $dbc->query($cmd);
+$res = $dbs->query($cmd);
 $table = $res->fetchAll();
 
 ?>
@@ -130,7 +128,7 @@ $table = $res->fetchAll();
 		<td><input type="text" name="usr_pass" value="<?php echo $usr_pwd_upd ; ?>"  placeholder="Mot de passe"></td>
 		<td><input type="text" name="usr_ville" value="<?php echo $usr_address_upd ; ?>"  placeholder="Ville"></td>
 		<td><input type="text" name="usr_tel" value="<?php echo $usr_tel_upd ; ?>"  placeholder="N° Tél"></td>
-		<td><?php if($data['usr_role']=="admin") {?><input type="submit" value="Ok"><?php }?></td>
+		<td><?php if($data['usr_role']=="admin") {?><input type="submit" value="Valider"><?php }?></td>
 		<td></td> 
 		</form>
 	</thead>

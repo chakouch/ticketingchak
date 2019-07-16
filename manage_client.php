@@ -1,9 +1,9 @@
 <?php
 include 'navbar.php';
-$dbc = new PDO("mysql:host=localhost;dbname=ticketing" , "root", "");
+include 'db_connect.php';
+
 $action = (isset($_POST["act"])) ? $_POST["act"] : ""; 
 $id = (isset($_POST["id"])) ? $_POST["id"] : ""; 
-
 
 $cli_id_upd       = "";
 $cli_nom_upd      = "";
@@ -36,14 +36,14 @@ if ($action == "N"){
                 ";
     }
     
-    $dbc->query($cmd);
+    $dbs->query($cmd);
     
 }
 
 if ($action == "M"){
 
     $cmd = "select * from client where cli_id = '$id' ;";
-    $res = $dbc->query($cmd);
+    $res = $dbs->query($cmd);
     $line = $res->fetch();
 
     $cli_id_upd       = $line["cli_id"];
@@ -58,14 +58,12 @@ if ($action == "M"){
 
 if ($action == "S"){
     $cmd = "update client set cli_del=1 where cli_id='$id' ; ";
-    $dbc->query($cmd);
+    $dbs->query($cmd);
 }
 
 
-
-$dbc = new PDO("mysql:host=localhost;dbname=ticketing" , "root", "");
 $cmd= "select * from client";
-$res = $dbc->query($cmd);
+$res = $dbs->query($cmd);
 $table = $res->fetchAll();
 
 ?>
@@ -74,9 +72,7 @@ $table = $res->fetchAll();
 <html>
 <head>
 		<meta charset="utf-8">
-		<!-- Bootstrap -->
 		<link href="./fontawesome/css/all.css" rel="stylesheet">
-    	<!-- link href="../bs337/css/bootstrap.min.css" rel="stylesheet"-->
 		<title>Gestion des clients</title>	
 </head>
 <body>
@@ -108,7 +104,7 @@ $table = $res->fetchAll();
 		<td><input type="text" name="cli_address" value="<?php echo $cli_address_upd ; ?>"  placeholder="Adresse"></td>
 		<td><input type="text" name="cli_email" value="<?php echo $cli_email_upd ; ?>"  placeholder="Email"></td>
 		<td><input type="text" name="cli_tel" value="<?php echo $cli_tel_upd ; ?>"  placeholder="N° Tél"></td>
-		<td><input type="submit" value="Ok"></td>
+		<td><input type="submit" value="Valider"></td>
 		<td></td> 
 		</form>
 	</thead>

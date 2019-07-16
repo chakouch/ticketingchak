@@ -30,7 +30,6 @@ if ($action == "N"){
 	$intervention		= (isset($_POST["intervention"]))? $_POST["intervention"] : '';
 	$intervenantCloture = (isset($_POST["intervenantCloture"]))? $_POST["intervenantCloture"] : '';
 	$dateCloture		=  date('Y-m-d H:i:s');
-	//$tck_del			= (isset($_POST["tck_del"]))? $_POST["tck_del"] : '';
 	$tck_del = 0;
 	
     if ($id == ""){
@@ -143,14 +142,14 @@ $table = $res->fetchAll();
 		<td><input type="text" name="tck_client" value="<?php echo $tck_client_upd ; ?>" placeholder="client"></td>
 		<td><input type="text" name="tck_titre" value="<?php echo $tck_titre_upd ; ?>"  placeholder="titre"></td>
 		<td><input type="text" name="tck_description" value="<?php echo $tck_description_upd ; ?>"  placeholder="description"></td>
-		<td><input type="text" name="tck_date" value="<?php echo $tck_date_upd ; ?>"  placeholder="date de création"></td>
+		<td><input type="text" name="tck_date" value="<?php echo $tck_date_upd ; ?>"  placeholder="date de création" disabled></td>
 		<td><input type="text" name="tck_urgence" value="<?php echo $tck_urgence_upd ; ?>"  placeholder="urgence"></td>
-		<td><input type="text" name="tck_createur" value="<?php echo $tck_createur_upd ; ?>"  placeholder="créateur"></td>
+		<td><input type="text" name="tck_createur" value="<?php echo $tck_createur_upd ; ?>"  placeholder="créateur" disabled></td>
 		<td><input type="text" name="intervenant" value="<?php echo $intervenant_upd ; ?>"  placeholder="intervenant"></td>
 		<td><input type="text" name="intervenantCloture" value="<?php echo $intervenantCloture_upd ; ?>"  placeholder="cloturé"></td>
 		<td><input type="text" name="intervention" value="<?php echo $intervention_upd ; ?>"  placeholder="intervention"></td>
-		<td><input type="text" name="dateCloture" value="<?php echo $dateCloture_upd ; ?>"  placeholder="date de cloture"></td>
-		<td><input type="submit" value="Créer ce ticket"></td>
+		<td><input type="text" name="dateCloture" value="<?php echo $dateCloture_upd ; ?>"  placeholder="date de cloture" disabled></td>
+		<td><input type="submit" value="Valider"></td>
 		<td></td>
 		</form>
 	</thead>

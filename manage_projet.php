@@ -1,6 +1,5 @@
 <?php
 include 'navbar.php';
-$dbc = new PDO("mysql:host=localhost;dbname=ticketing" , "root", "");
 $action = (isset($_POST["act"])) ? $_POST["act"] : ""; 
 $id = (isset($_POST["id"])) ? $_POST["id"] : ""; 
 
@@ -35,14 +34,14 @@ if ($action == "N"){
                 ";
     }
     
-    $dbc->query($cmd);
+    $dbs->query($cmd);
     
 }
 
 if ($action == "M"){
 
     $cmd = "select * from projet where prj_id = '$id' ;";
-    $res = $dbc->query($cmd);
+    $res = $dbs->query($cmd);
     $line = $res->fetch();
 
     $prj_id_upd       = $line["prj_id"];
@@ -55,22 +54,21 @@ if ($action == "M"){
 
 if ($action == "S"){
     $cmd = "update projet set prj_del=1 where prj_id='$id' ; ";
-    $dbc->query($cmd);
+    $dbs->query($cmd);
 }
 
 
 
-$dbc = new PDO("mysql:host=localhost;dbname=ticketing" , "root", "");
 $cmd= "select * from projet";
-$res = $dbc->query($cmd);
+$res = $dbs->query($cmd);
 $table = $res->fetchAll();
 
 $client = "select * from client";
-$cli = $dbc->query($client);
+$cli = $dbs->query($client);
 $clients = $cli->fetchAll();
 
 $user = "select * from user";
-$us = $dbc->query($user);
+$us = $dbs->query($user);
 $users = $us->fetchAll();
 
 ?>
@@ -110,10 +108,10 @@ $users = $us->fetchAll();
 		<input type="hidden" name="act" value="N"> 
 		<input type="hidden" name="id" value="<?php echo $prj_id_upd ; ?>">
 		<td><input type="text" name="prj_nom" value="<?php echo $prj_nom_upd ; ?>" placeholder="Nom"></td>
-		<td><input type="text" name="prj_cli_nom" value="<?php echo $prj_cli_nom_upd ; ?>" placeholder="Nom"></td>
-		<td><input type="text" name="prj_usr_nom" value="<?php echo $prj_usr_nom_upd ; ?>" placeholder="Nom"></td>
+		<td><input type="text" name="prj_cli_nom" value="<?php echo $prj_cli_nom_upd ; ?>" placeholder="Client" disabled></td>
+		<td><input type="text" name="prj_usr_nom" value="<?php echo $prj_usr_nom_upd ; ?>" placeholder="Utilisateur" disabled></td>
 		<td><input type="text" name="prj_date" value="<?php echo $prj_date_upd ; ?>" placeholder="Nom"></td>
-		<td><input type="submit" value="Ok"></td>
+		<td><input type="submit" value="Valider"></td>
 		<td></td> 
 		</form>
 	</thead>

@@ -2,18 +2,11 @@
 
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
 
     <title>Ticket Manager</title>
 
-    <!-- Bootstrap core CSS -->
     <link href="./bs337/css/bootstrap.min.css" rel="stylesheet">
-	<link href="main.css" rel="stylesheet">
+	<link href="./main.css" rel="stylesheet">
   </head>
 
   <body>
@@ -45,12 +38,8 @@
       </div>
     </nav>
 	
-    <!-- Main jumbotron for a primary marketing message or call to action -->
     <div id="banner" class="description">
       <div id="cloud-scroll" class="container info titre" >
-		<!--div class="vie" style="background-image: url('./website-design-background.jpg'); background-repeat: no-repeat; background-size: 100%; background-position: center;"></div-->
-		<!--image width="100%" height="420" src="./website-design-background.jpg"></image-->
-		
         <h1 style="color:#2faabd;">Gestion des Tickets d'Incidents</h1>
         <p style="color:#33b3de;">Cet outil vous permet de rassembler les demandes des utilisateurs et de les traiter dans les meilleurs délais</p>
 		<p style="color:#009dff;">Veuillez vous identifiez pour accéder à la plateforme</p>

@@ -61,9 +61,8 @@ if ($action == "N"){
                          <div class="form-group">
                             <label class="col-md-3 control-label">client</label>
                             <div class="col-md-8 inputGroupContainer">
-                               <!--div class="input-group"><span class="input-group-addon"><i class="fas fa-user"></i></span><input id="client" name="client" placeholder="client" class="form-control" required="true" value="" type="text"></div-->
 							   <div class="input-group">
-                                  <span class="input-group-addon" style="max-width: 100%;"><i class="far fa-bell"></i></span>
+                                  <span class="input-group-addon" style="max-width: 100%;"><i class="fas fa-user"></i></span>
                                   <select class="selectpicker form-control" name="client">
 								  <?php foreach ($table as $row ) {?>
                                      <option value="<?php echo $row["cli_nom"] ?>"><?php echo $row["cli_nom"] ?></option>
@@ -75,7 +74,6 @@ if ($action == "N"){
                          <div class="form-group">
                             <label class="col-md-3 control-label">Intervenant</label>
                             <div class="col-md-8 inputGroupContainer">
-                               <!--div class="input-group"><span class="input-group-addon"><i class="fas fa-user"></i></span><input id="client" name="client" placeholder="client" class="form-control" required="true" value="" type="text"></div-->
 							   <div class="input-group">
                                   <span class="input-group-addon" style="max-width: 100%;"><i class="fas fa-wrench"></i></span>
                                   <select class="selectpicker form-control" name="intervenant">

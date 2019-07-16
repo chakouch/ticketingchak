@@ -1,6 +1,6 @@
 <?php
 include 'navbar.php';
-$dbc = new PDO("mysql:host=localhost;dbname=ticketing" , "root", "");
+
 $action = (isset($_POST["act"])) ? $_POST["act"] : ""; 
 $id = (isset($_POST["id"])) ? $_POST["id"] : ""; 
 
@@ -15,7 +15,6 @@ $tck_createur_upd       = "";
 $intervenant_upd        = "";
 $intervention_upd       = "";
 $intervenantCloture_upd = "";
-$dateCloture_upd        = "";
 $tck_del_upd            = "";
 
 if ($action == "N"){
@@ -30,7 +29,6 @@ if ($action == "N"){
 	$intervention		= (isset($_POST["intervention"]))? $_POST["intervention"] : '';
 	$intervenantCloture = (isset($_POST["intervenantCloture"]))? $_POST["intervenantCloture"] : '';
 	$dateCloture		=  date('Y-m-d H:i:s');
-	//$tck_del			= (isset($_POST["tck_del"]))? $_POST["tck_del"] : '';
 	$tck_del = 0;
 	
     if ($id == ""){
@@ -54,14 +52,14 @@ if ($action == "N"){
                 ";
     }
     //echo $cmd;
-    $dbc->query($cmd);
+    $dbs->query($cmd);
     
 }
 
 if ($action == "M"){
 
     $cmd = "select * from ticket where tck_id = '$id' ;";
-    $res = $dbc->query($cmd);
+    $res = $dbs->query($cmd);
     $line = $res->fetch();
 
     $tck_id_upd       		= $line["tck_id"];
@@ -74,20 +72,18 @@ if ($action == "M"){
 	$intervenant_upd      	= $line["intervenant"];
 	$intervenantCloture_upd	= $line["intervenantCloture"];
 	$intervention	      	= $line["intervention"];
-    $dateCloture_upd      	= $line["dateCloture"];
     $tck_del_upd      		= $line["tck_del"];
 }
 
 if ($action == "S"){
     $cmd = "update ticket set tck_del=1 where tck_id='$id' ; ";
-    $dbc->query($cmd);
+    $dbs->query($cmd);
 }
 
 
 
-$dbc = new PDO("mysql:host=localhost;dbname=ticketing" , "root", "");
 $cmd= "select * from ticket";
-$res = $dbc->query($cmd);
+$res = $dbs->query($cmd);
 $table = $res->fetchAll();
 
 ?>
@@ -132,7 +128,6 @@ $table = $res->fetchAll();
 			<th class="toggle" >intervenant</th>
 			<th class="toggle" >cloturé</th>
 			<th class="toggle" >intervention</th>
-			<th class="toggle" >date de cloture</th>
 			<th class="toggle" ">Actions</th>
 		</tr>
 	</thead>
@@ -143,14 +138,13 @@ $table = $res->fetchAll();
 		<td><input type="text" name="tck_client" value="<?php echo $tck_client_upd ; ?>" placeholder="client"></td>
 		<td><input type="text" name="tck_titre" value="<?php echo $tck_titre_upd ; ?>"  placeholder="titre"></td>
 		<td><input type="text" name="tck_description" value="<?php echo $tck_description_upd ; ?>"  placeholder="description"></td>
-		<td><input type="text" name="tck_date" value="<?php echo $tck_date_upd ; ?>"  placeholder="date de création"></td>
+		<td><input type="text" name="tck_date" value="<?php echo $tck_date_upd ; ?>"  placeholder="date de création" disabled></td>
 		<td><input type="text" name="tck_urgence" value="<?php echo $tck_urgence_upd ; ?>"  placeholder="urgence"></td>
-		<td><input type="text" name="tck_createur" value="<?php echo $tck_createur_upd ; ?>"  placeholder="créateur"></td>
+		<td><input type="text" name="tck_createur" value="<?php echo $tck_createur_upd ; ?>"  placeholder="créateur" disabled></td>
 		<td><input type="text" name="intervenant" value="<?php echo $intervenant_upd ; ?>"  placeholder="intervenant"></td>
 		<td><input type="text" name="intervenantCloture" value="<?php echo $intervenantCloture_upd ; ?>"  placeholder="cloturé"></td>
 		<td><input type="text" name="intervention" value="<?php echo $intervention_upd ; ?>"  placeholder="intervention"></td>
-		<td><input type="text" name="dateCloture" value="<?php echo $dateCloture_upd ; ?>"  placeholder="date de cloture"></td>
-		<td><input type="submit" value="Créer ce ticket"></td>
+		<td><input type="submit" value="Valider"></td>
 		<td></td>
 		</form>
 	</thead>
@@ -168,7 +162,6 @@ $table = $res->fetchAll();
 		<td><?php echo $row["intervenant"]?></td>
 		<td><?php echo $row["intervenantCloture"]?></td>
 		<td><?php echo $row["intervention"]?></td>
-		<td><?php echo $row["dateCloture"]?></td>
 		<td> 
     		<form action="manage_ticket.php" method="post">
     			<input type="hidden" name="id" value="<?php echo $row["tck_id"]?>">
